@@ -258,7 +258,7 @@ JSON_RET JSONThingToStringRecursivly            (JSON_THING_t object, char * * o
     checkOut;
     char * buffer = malloc(512);
     unsigned int currentBuf = 0;
-    unsigned int totalAllocatedminusOne = 512;
+    unsigned int totalAllocatedminusOne = 511;
 
     JSON_RET ret = JSONThingToStringRecursivlyinternal(object, &buffer, &currentBuf, &totalAllocatedminusOne);
     if(ret != 0){
