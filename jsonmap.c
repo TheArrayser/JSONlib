@@ -1,4 +1,9 @@
+#include "jsonlib.h"
+
 #include <string.h>
+#include <stdlib.h>
+
+
 
 #define JSON_NULL ((void *) 0)
 
@@ -25,6 +30,7 @@ void * getKeyatIndex(struct JSON_MAP_INFO * map, unsigned int index){
         if(current->next == JSON_NULL) return JSON_NULL;
         current = current->next;
     }
+    printf("KEY IS: %s", current->key);
     return current->key;
 
 }
@@ -71,11 +77,19 @@ void * getElementByIndex(struct JSON_MAP_INFO * map, unsigned int index){
 }
 
 int addElement(struct JSON_MAP_INFO * map, char * key, void * element){
-    if(map == JSON_NULL) return JSON_NULL;
-    unsigned int keylen = strlen(key) + 1;
-    char * cpystring = malloc(keylen);
-    if(cpystring == JSON_NULL) return 0;
-    strcpy(cpystring, key);
+    if(map == JSON_NULL) return 0;
+    unsigned int keylen;
+    char * cpystring;
+    if(key != JSON_NULL){
+        keylen = strlen(key) + 1;
+        cpystring = malloc(keylen);
+        if(cpystring == JSON_NULL) return 0;
+        strcpy(cpystring, key);
+    }else{
+        printf("not copyiing!\n");
+        keylen = 0;
+        cpystring = JSON_NULL;
+    }
     struct JSON_MAP_ELEMENT * newElement = malloc(sizeof(struct JSON_MAP_ELEMENT));
     if(newElement == JSON_NULL){
         free(cpystring);
@@ -86,6 +100,7 @@ int addElement(struct JSON_MAP_INFO * map, char * key, void * element){
     newElement->next = map->start;
     map->elements++;
     map->start = newElement;
+    printf("KEY\n: %s", cpystring);
     return 1;
 
 }

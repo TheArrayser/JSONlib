@@ -7,7 +7,7 @@ JSON_RET JSONremoveElementFromObject (JSON_THING_t object, char * key, JSON_THIN
     if(object == JSON_NULL) return JSON_ERROR_NULL;
     if(key == JSON_NULL) return JSON_ERROR_KEY_NOT_FOUND;
     if(object->type != JSON_e_OBJECT) return JSON_ERROR_INCORRECT_TYPE;
-    if(object->thing.pointer == JSON_NULL) return JSON_NULL;
+    if(object->thing.pointer == JSON_NULL) return JSON_ERROR_NULL;
 
     *removed = removeElementbyKey(object->thing.pointer, key);
     if(*removed == JSON_NULL){
@@ -57,7 +57,7 @@ JSON_RET JSONremoveElementFromArray  (JSON_THING_t object, unsigned int index, J
     if(object == JSON_NULL) return JSON_ERROR_NULL;
     if(index < 0) return JSON_ERROR_KEY_NOT_FOUND;
     if(object->type != JSON_e_ARRAY) return JSON_ERROR_INCORRECT_TYPE;
-    if(object->thing.pointer == JSON_NULL) return JSON_NULL;
+    if(object->thing.pointer == JSON_NULL) return JSON_ERROR_NULL;
 
     *removed = removeElementbyIndex(object->thing.pointer, index);
     if(*removed == JSON_NULL){

@@ -1,6 +1,7 @@
 #include "jsonlib.h"
 #include "jsonmap.h"
 #include <string.h>
+#include <stdlib.h>
 
 #define checkOut {if(out == JSON_NULL){return JSON_SUCCESS;}}
 
